@@ -33,6 +33,7 @@ public with sharing class SOQL {
         SELECT Id, LastName, Company, Phone, Email
         FROM Lead
         WITH USER_MODE
+		LIMIT 50000
     	];
 	}
 
@@ -154,6 +155,7 @@ public with sharing class SOQL {
 			[SELECT Id, Name, StageName, CloseDate, AccountId
 			 FROM Opportunity
 			 WHERE Opportunity.Name LIKE :('%' + keyword + '%')
+			 WITH USER_MODE
 			 ]);
 		return oppsByNameKeyword;
 	}
@@ -219,6 +221,7 @@ public with sharing class SOQL {
 			SELECT Id, FirstName, LastName, AccountId
 			FROM Contact
 			WHERE AccountId = :accountId
+			WITH USER_MODE
 		];
 
 		for (Contact con : contactList) {
